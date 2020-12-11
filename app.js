@@ -48,6 +48,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 
@@ -60,14 +61,15 @@ app.use((error, req, res, next) => {
 });
 
 //mongodb+srv://ship:ship12345@cluster0-r3cso.mongodb.net/blog-post-demo?retryWrites=true&w=majority
-
+//
 mongoose
   .connect(
-    'mongodb+srv://ship:ship12345@cluster0-r3cso.mongodb.net/blog-post-demo?retryWrites=true&w=majority'
+    'mongodb+srv://ship:ship12345@cluster0-r3cso.mongodb.net/blog-post-demo?retryWrites=true&w=majority',
+    { useNewUrlParser: true }
   )
   .then(result => {
     app.listen((process.env.PORT || 8080), ()=>{
-      console.log("Running on ", process.env.PORT)
+      console.log("**********Running***********")
     });
   })
-  .catch(err => console.log(err));
+  .catch(err => console.log("********Error in connection********",err));
