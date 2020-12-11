@@ -62,14 +62,15 @@ app.use((error, req, res, next) => {
 
 //mongodb+srv://ship:ship12345@cluster0-r3cso.mongodb.net/blog-post-demo?retryWrites=true&w=majority
 //
+const port  = process.env.PORT || 8080;
 mongoose
   .connect(
     'mongodb+srv://ship:ship12345@cluster0-r3cso.mongodb.net/blog-post-demo?retryWrites=true&w=majority',
     { useNewUrlParser: true }
   )
   .then(result => {
-    app.listen((process.env.PORT || 8080), ()=>{
-      console.log("**********Running***********")
+    app.listen(port, ()=>{
+      console.log("**********Running on***********", port)
     });
   })
   .catch(err => console.log("********Error in connection********",err));
